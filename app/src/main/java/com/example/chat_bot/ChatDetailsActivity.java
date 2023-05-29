@@ -10,14 +10,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class ChatDetailsActivity extends AppCompatActivity {
+import java.util.List;
+
+public class ChatDetailsActivity extends AppCompatActivity implements MessageAdapter.OnItemClickListener {
 
 
         private static final String KEY_CHAT_ID = "chatId";
+    private List<Message> messageList;
     private MessageAdapter adapter;
 
     public ChatDetailsActivity(MessageAdapter adapter) {
-        Adapter = adapter;
+        this.adapter = adapter;
     }
 
 
@@ -66,7 +69,7 @@ public class ChatDetailsActivity extends AppCompatActivity {
 
                 // criar um objeto do tipo ContactAdapter (que extende Adapter)
                 // ContactAdapter adapter = new ContactAdapter(MemoryDatabase.getAllContacts());
-                this.adapter = new MessageAdapter(this);
+                adapter = new MessageAdapter(messageList,this);
                 // ContactAdapter adapter = new ContactAdapter(AppDatabase.getInstance(this).getContactDao().getAll());
 
                 // criar um objecto do tipo LinearLayoutManager para ser utilizado na RecyclerView
@@ -82,8 +85,15 @@ public class ChatDetailsActivity extends AppCompatActivity {
 
 
 
+
+
         public void deleteChat(View view) {
             AppDatabase.getInstance(this).getChatDao().delete(this.chat);
             finish();
         }
+
+    @Override
+    public void onItemClick(long timestamp, long messageId, String chatId, String sender, String content) {
+        //TODO completar
     }
+}

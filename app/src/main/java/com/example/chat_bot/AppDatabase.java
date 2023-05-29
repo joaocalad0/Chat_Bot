@@ -27,6 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             //db.execSQL("INSERT INTO chat VALUES (1, 'Friendly', '12345678',  1)");
                             //db.execSQL("INSERT INTO chat VALUES (2, 'Agressive', '12345678',  0)");
                             //db.execSQL("INSERT INTO chat VALUES (3, 'Random', '12345678',  0)");
+
                         }
                     })
                     .build();
