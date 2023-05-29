@@ -42,15 +42,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @NonNull
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Criar um objeto do tipo View com base no layout criado (contact_item.xml)
+        // Criar um objeto do tipo View com base no layout criado (chat_item.xml)
         if (viewType == 1) {
             // is Favorite
             View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_favorite, parent, false);
-            // criar e devolver um objeto do tipo ContactViewHolder
+            // criar e devolver um objeto do tipo ChatViewHolder
             return new ChatFavoriteViewHolder(rootView);
         }
         View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item, parent, false);
-        // criar e devolver um objeto do tipo ContactViewHolder
+        // criar e devolver um objeto do tipo ChatViewHolder
         return new ChatNormalViewHolder(rootView);
     }
 
@@ -140,6 +140,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     public interface ChatAdapterEventListener {
         void onChatClicked(long chatId);
-        void onChatLongClicked(long chattId);
+        void onChatLongClicked(long chatId);
     }
 }

@@ -6,22 +6,18 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Chat {
     @PrimaryKey(autoGenerate = true)
-    private long id;
+
     private String name;
     private String phoneNumber;
 
     private boolean favorite;
 
-    public Chat(long id, String name, String phoneNumber, boolean favorite) {
-        this.id = id;
+    public Chat( String name, String phoneNumber, boolean favorite) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.favorite = favorite;
     }
 
-    public long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
