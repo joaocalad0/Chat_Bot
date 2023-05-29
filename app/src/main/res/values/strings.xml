@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Chat-Bot</string>
+    <string name="from">From</string>
+    <string name="rules">When registering, the user must provide complete, recent and valid data, and it is his sole responsibility to keep said data up to date, as well as the user committing himself to the veracity of the data provided.
+The user undertakes not to inform third parties of their registration and/or access data to the platform, being fully responsible for the use made of them.</string>
+    <string name="accept">Accept</string>
+    <string name="Id">ID</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="createAccount">Create Account!</string>
+    <string name="email">Email</string>
+    <string name="crate">Create!</string>
+</resources>
