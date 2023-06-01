@@ -11,7 +11,7 @@ public class Message {
     private long messageId;
 
     @ColumnInfo(name = "chat_id")
-    private String chatId;
+    private long chatId;
 
     @ColumnInfo(name = "sender")
     private String sender;
@@ -24,11 +24,15 @@ public class Message {
 
     // Construtor e métodos getters/setters
 
-    public Message(String chatId, String sender, String content, long timestamp) {
+    public Message(long chatId, String sender, String content, long timestamp) {
         this.chatId = chatId;
         this.sender = sender;
         this.content = content;
         this.timestamp = timestamp;
+    }
+
+    public Message(int chatId, long id, String content, boolean b, String format) {
+
     }
 
     public long getMessageId() {
@@ -39,11 +43,11 @@ public class Message {
         this.messageId = messageId;
     }
 
-    public String getChatId() {
+    public long getChatId() {
         return chatId;
     }
 
-    public void setChatId(String chatId) {
+    public void setChatId(long chatId) {
         this.chatId = chatId;
     }
 
@@ -72,6 +76,13 @@ public class Message {
     }
 
 
+    public String getText() {
+        return null;
+    }
+
+    public Object getDate() {
+        return null;
+    }
 }
 
 

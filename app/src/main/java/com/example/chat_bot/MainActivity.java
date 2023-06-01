@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatAdapterEventListener {
 
+    public static MainActivity mainActivity;
     private ChatAdapter adapter;
 
     @Override
@@ -20,34 +23,22 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // obter uma referência para a RecyclerView que existe no layout da MainActivity
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        mainActivity = this;
 
-        // obter uma instância do ContactDao
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         AppDatabase db = AppDatabase.getInstance(this);
         ChatDao chatDao = db.getChatDao();
-
-        // criar um objeto do tipo ContactAdapter (que extende Adapter)
-        // ChatAdapter adapter = new ChatAdapter(MemoryDatabase.getAllContacts());
-        this.adapter = new ChatAdapter(this);
-        // ChatAdapter adapter = new ChatAdapter(AppDatabase.getInstance(this).getChatDao().getAll());
-
-        // criar um objecto do tipo LinearLayoutManager para ser utilizado na RecyclerView
-        // o LinearLayoutManager tem como orientação default a orientação Vertical
+        adapter = new ChatAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
-        // Definir que a RecyclerView utiliza como Adapter o objeto que criámos anteriormente
-        recyclerView.setAdapter(this.adapter);
-        // Definir que a RecyclerView utiliza como LayoutManager o objeto que criámos anteriormente
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         List<Chat> newChatList = AppDatabase.getInstance(this).getChatDao().getAll();
-        this.adapter.refreshList(newChatList);
+        adapter.refreshList(newChatList);
     }
 
     public void addChat(View view) {
@@ -56,19 +47,17 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
 
     @Override
     public void onChatClicked(long chatId) {
-        ChatDetailsActivity.startActivity(this, chatId);
+        Intent intent = new Intent(this, ChatDetailsActivity.class);
+        intent.putExtra("KEY_CHAT_ID", chatId);
+        startActivity(intent);
     }
 
     @Override
     public void onChatLongClicked(long chatId) {
-        // TODO add AlertDialog here
         ChatDao chatDao = AppDatabase.getInstance(MainActivity.this).getChatDao();
         Chat chat = chatDao.getById(chatId);
 
-        // 1. Instantiate an <code><a href="/reference/android/app/AlertDialog.Builder.html">AlertDialog.Builder</a></code> with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        // 2. Chain together various setter methods to set the dialog characteristics
         builder.setTitle("Delete Chat");
         builder.setMessage("Do you really want to delete " + chat.getName() + "?");
 
@@ -89,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
             }
         });
 
-        // 3. Get the <code><a href="/reference/android/app/AlertDialog.html">AlertDialog</a></code> from <code><a href="/reference/android/app/AlertDialog.Builder.html#create()">create()</a></code>
         AlertDialog dialog = builder.create();
         dialog.show();
     }

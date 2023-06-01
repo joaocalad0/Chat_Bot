@@ -8,32 +8,45 @@ public class Chat {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
-    private String phoneNumber;
+    private String text;
 
-    private boolean favorite;
+    private String date;
 
-    public Chat(long id, String name, String phoneNumber, boolean favorite) {
-        this.id = id;
+    public Chat(String name, String text, String date) {
         this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.favorite = favorite;
+        this.text = text;
+        this.date = date;
     }
 
     public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getText() {
+        return text;
+    }
 
-    public boolean isFavorite() {
-        return favorite;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
-

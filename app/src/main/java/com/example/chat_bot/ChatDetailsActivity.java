@@ -1,99 +1,111 @@
 package com.example.chat_bot;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
+import java.util.Date;
 import java.util.List;
 
-public class ChatDetailsActivity extends AppCompatActivity implements MessageAdapter.OnItemClickListener {
-
-
-        private static final String KEY_CHAT_ID = "chatId";
-    private List<Message> messageList;
-    private MessageAdapter adapter;
-
-    public ChatDetailsActivity(MessageAdapter adapter) {
-        this.adapter = adapter;
+public class ChatDetailsActivity extends AppCompatActivity {
+    public static void startActivity(Context context, int id) {
+        Intent intent = new Intent(context, ChatDetailsActivity.class);
+        intent.putExtra(KEY_CHAT_ID, id);
+        context.startActivity(intent);
     }
 
+    private static final String KEY_CHAT_ID = "CHAT_ID";
+    private RecyclerView recyclerView;
+    private Chat chat;
+    private MessageAdapter adapter;
 
-    public static void startActivity(Context context, long chatId) {
-            Intent intent = new Intent(context, ChatDetailsActivity.class);
-            intent.putExtra(ChatDetailsActivity.KEY_CHAT_ID, chatId);
-            context.startActivity(intent);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat_details);
+
+        int chatId = -1;
+        if (getIntent().getExtras() != null) {
+            chatId = getIntent().getExtras().getInt(KEY_CHAT_ID, -1);
         }
 
-        private Chat chat;
+        if (chatId == -1) {
+            finish();
+            return;
+        }
 
+        ActionBar actionBar = getSupportActionBar();
+        recyclerView = findViewById(R.id.recyclerView1);
 
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_chat_details);
-
-            Intent intent = getIntent();
-            Bundle bundle = intent.getExtras();
-            if (bundle != null) {
-                long contactId = bundle.getLong(KEY_CHAT_ID, -1);
-
-                AppDatabase db = AppDatabase.getInstance(this);
-                ChatDao dao = db.getChatDao();
-                this.chat = dao.getById(contactId);
-                // Chat chat = MemoryDatabase.getChatForPosition(position);
-                //ImageView imageViewAvatar = findViewById(R.id.imageViewAvatar);
-                TextView textViewName = findViewById(R.id.textViewName);
-                //TextView textViewPhoneNumber = findViewById(R.id.textViewPhoneNumber);
-
-                //Glide.with(this).load(chat.getAvatar()).into(imageViewAvatar);
-                //textViewName.setText(chat.getName());
-                //textViewPhoneNumber.setText(chat.getPhoneNumber());
-            } else {
-                finish();
-            }
-
-
-                // obter uma referência para a RecyclerView que existe no layout da ChatDetailsActivity
-                RecyclerView recyclerView = findViewById(R.id.recyclerView1);
-
-                // obter uma instância do ContactDao
-                AppDatabase db = AppDatabase.getInstance(this);
-                MessageDao contactDao = db.getMessageDao();
-
-                // criar um objeto do tipo ContactAdapter (que extende Adapter)
-                // ContactAdapter adapter = new ContactAdapter(MemoryDatabase.getAllContacts());
-                adapter = new MessageAdapter(messageList,this);
-                // ContactAdapter adapter = new ContactAdapter(AppDatabase.getInstance(this).getContactDao().getAll());
-
-                // criar um objecto do tipo LinearLayoutManager para ser utilizado na RecyclerView
-                // o LinearLayoutManager tem como orientação default a orientação Vertical
-                LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
-                // Definir que a RecyclerView utiliza como Adapter o objeto que criámos anteriormente
-                recyclerView.setAdapter(this.adapter);
-                // Definir que a RecyclerView utiliza como LayoutManager o objeto que criámos anteriormente
-                recyclerView.setLayoutManager(layoutManager);
-
-            }
-
-
-
-
-
-        public void deleteChat(View view) {
-            AppDatabase.getInstance(this).getChatDao().delete(this.chat);
+        this.chat = AppDatabase.getInstance(this).getChatDao().getChatById(chatId);
+        if (chat != null) {
+            List<Message> messageList = (List<Message>) AppDatabase.getInstance(this).getMessageDao().getMessageByChatId(chat.getId());
+            adapter = new MessageAdapter(messageList, this, this);
+            actionBar.setTitle(chat.getName());
+        } else {
             finish();
         }
 
-    @Override
-    public void onItemClick(long timestamp, long messageId, String chatId, String sender, String content) {
-        //TODO completar
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    public void sendMessage(View view) {
+        EditText editText = findViewById(R.id.editMessage);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss");
+        Date date = new Date();
+
+        final Message[] message = {new Message(0, chat.getId(), editText.getText().toString(), false, formatter.format(date))};
+        AppDatabase.getInstance(this).getMessageDao().add(message[0]);
+        editText.setText("");
+        List<Message> messageList = AppDatabase.getInstance(this).getMessageDao().getAll();
+        new CountDownTimer(2000, 1000) {
+            public void onTick(long millisUntilFinished) {
+            }
+
+            public void onFinish() {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss");
+                Date date = new Date();
+                if (messageList.get(messageList.size() - 1).getText().equalsIgnoreCase("Hello matrix")) {
+                    message[0] = new Message(0, chat.getId(), "Hello my old friend", true, format.format(date));
+
+                } else if (messageList.get(messageList.size() - 1).getText().equalsIgnoreCase("How you doing")) {
+                    message[0] = new Message(0, chat.getId(), "Fine thanks!", true, format.format(date));
+
+
+                } else if (messageList.get(messageList.size() - 1).getText().equalsIgnoreCase("Hello")) {
+                    message[0] = new Message(0, chat.getId(), "Hello and good morning", true, format.format(date));
+
+
+                } else if (messageList.get(messageList.size() -1).getText().equalsIgnoreCase("How are you?")) {
+                    message[0] = new Message(0, chat.getId(), "How are you?", true, format.format(date));
+
+
+                } else if (messageList.get(messageList.size() -1).getText().equalsIgnoreCase("Good and you?")) {
+                    message[0] = new Message(0, chat.getId(), "Good an you?", true, format.format(date));
+
+                
+
+            } else {
+                    message[0] = new Message(0, chat.getId(), message[0].getText(), true, format.format(date));
+                }
+                AppDatabase.getInstance(ChatDetailsActivity.this).getMessageDao().add(message[0]);
+                adapter.notifyDataSetChanged();
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+                //AppDatabase.getInstance(ChatDetailsActivity.this).getChatDao().update(message.);
+            }
+        }.start();
     }
 }

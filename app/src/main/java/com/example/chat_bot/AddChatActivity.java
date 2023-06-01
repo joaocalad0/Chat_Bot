@@ -39,10 +39,10 @@ public class AddChatActivity extends AppCompatActivity {
     public void addChat(View view) {
         // save chat to Database and finish Activity
         String name = this.editTextName.getText().toString();
-        String phoneNumber = this.editTextPhoneNumber.getText().toString();
-        String avatar = this.editTextAvatar.getText().toString();
+        String text = this.editTextPhoneNumber.getText().toString();
+        String date = this.editTextAvatar.getText().toString();
 
-        Chat newChat = new Chat(0, name, phoneNumber, false);
+        Chat newChat = new Chat( name, text, date);
 
 //        AppDatabase appDatabase = AppDatabase.getInstance(this);
 //        ChatDao chatDao = appDatabase.getChatDao();

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +19,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private List<Message> messageList;
     private Context context;
 
-    public MessageAdapter(List<Message> messageList, Context context) {
+    public MessageAdapter(List<Message> messageList, Context context, Context messageByChatId) {
         this.messageList = messageList;
         this.context = context;
     }
@@ -35,17 +34,18 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         Message message = messageList.get(position);
-        holder.bind(message);
+        /*holder.bind(message);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             //TODO corrigir
-            @Override
+           // @Override
             public void onClick(View v) {
                 if (eventlistener != null) {
                     eventlistener.onItemClick(message);
+                    Message newMessage = new Message(0, sender, Stringtring, false);
                 }
             }
         });
-
+*/
     }
 
     @Override

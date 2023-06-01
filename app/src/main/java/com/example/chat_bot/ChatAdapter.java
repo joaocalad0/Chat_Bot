@@ -103,8 +103,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 //        if (contact.isFavorite()) {
 //            return 1;
 //        }
-//        return 0;
-        return chat.isFavorite() ? 1 : 0;
+//        re
+//
+         return 0;
+        //return chat.isFavorite() ? 1 : 0;
     }
 
     public void refreshList(List<Chat> newChatList) {

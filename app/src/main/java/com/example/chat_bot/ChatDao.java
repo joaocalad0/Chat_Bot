@@ -28,4 +28,10 @@ public interface ChatDao {
 
     @Delete
     void delete(Chat chat);
+
+
+    @Query("SELECT * FROM chat WHERE id = :chatId")
+    Chat getChatById(int chatId);
+
+
 }
