@@ -14,24 +14,15 @@ public interface ChatDao {
     @Query("SELECT * FROM chat")
     List<Chat> getAll();
 
-    @Query("SELECT * FROM chat WHERE id = :chatId")
-    Chat getById(long chatId);
+    @Query("SELECT * FROM chat WHERE id = :Id")
+    Chat getById(long Id);
 
     @Insert
     void insert(Chat chat);
-
-    @Insert
-    void insert(List<Chat> chatList);
 
     @Update
     void update(Chat chat);
 
     @Delete
     void delete(Chat chat);
-
-
-    @Query("SELECT * FROM chat WHERE id = :chatId")
-    Chat getChatById(int chatId);
-
-
 }

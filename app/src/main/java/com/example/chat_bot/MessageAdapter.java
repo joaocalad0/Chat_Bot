@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private List<Message> messageList;
     private Context context;
 
-    public MessageAdapter(List<Message> messageList, Context context, Context messageByChatId) {
+    public MessageAdapter(List<Message> messageList, Context context) {
         this.messageList = messageList;
         this.context = context;
     }
@@ -34,18 +35,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         Message message = messageList.get(position);
-        /*holder.bind(message);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            //TODO corrigir
-           // @Override
-            public void onClick(View v) {
-                if (eventlistener != null) {
-                    eventlistener.onItemClick(message);
-                    Message newMessage = new Message(0, sender, Stringtring, false);
-                }
-            }
-        });
-*/
+        holder.bind(message);
     }
 
     @Override
@@ -58,15 +48,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         private TextView textViewContent;
         private TextView textViewTimestamp;
 
-        private Button imageViewAvatar;
-
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewSender = itemView.findViewById(R.id.text_view_sender);
             textViewContent = itemView.findViewById(R.id.text_view_content);
             textViewTimestamp = itemView.findViewById(R.id.text_view_timestamp);
-            imageViewAvatar = itemView.findViewById(R.id.imageViewAvatar);
-
         }
 
         public void bind(Message message) {
@@ -84,13 +70,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         }
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(long timestamp, long messageId, String chatId, String sender, String content);
-    }
-
     public void refreshList(List<Message> newMessageList) {
-        this.messageList = newMessageList;
+        messageList.clear();
+        messageList.addAll(newMessageList);
         notifyDataSetChanged();
     }
-
 }

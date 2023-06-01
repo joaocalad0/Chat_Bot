@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity
 public class Message {
     @PrimaryKey(autoGenerate = true)
@@ -29,10 +31,6 @@ public class Message {
         this.sender = sender;
         this.content = content;
         this.timestamp = timestamp;
-    }
-
-    public Message(int chatId, long id, String content, boolean b, String format) {
-
     }
 
     public long getMessageId() {
@@ -75,13 +73,14 @@ public class Message {
         this.timestamp = timestamp;
     }
 
-
+    // Retorna o texto da mensagem (utilizado no RecyclerView)
     public String getText() {
-        return null;
+        return content;
     }
 
+    // Retorna a data da mensagem (utilizado no RecyclerView)
     public Object getDate() {
-        return null;
+        return new Date(timestamp);
     }
 }
 
