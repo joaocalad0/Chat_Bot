@@ -79,8 +79,8 @@ public class ChatDetailsActivity extends AppCompatActivity {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss");
                 Date date = new Date();
 
-                if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello matrix")) {
-                    message[0] = new Message(chat.getId(), "Sender Name", "Hello my old friend", date.getTime());
+                if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello buddy")) {
+                    message[0] = new Message(chat.getId(), "Sender Name", "Hello my friend", date.getTime());
 
                 } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("How you doing")) {
                     message[0] = new Message(chat.getId(), "Sender Name", "Fine thanks!", date.getTime());
