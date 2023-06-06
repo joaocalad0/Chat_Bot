@@ -8,14 +8,17 @@ import java.util.List;
 @Dao
 public interface BotTipeDao {
     @Query("SELECT * FROM BotTipe WHERE botTipeName = 'Agressive'")
-    List<BotTipe> getAgressivoBotTipes();
+    List<BotTipe> getAgressiveBotTipes();
 
     @Query("SELECT * FROM BotTipe WHERE botTipeName = 'Friendly'")
-    List<BotTipe> getFriendlyBotTypes();
+    List<BotTipe> getFriendlyBotTipes();
 
     @Query("SELECT * FROM BotTipe WHERE botTipeName = 'Random'")
-    List<BotTipe> getRandomBotTypes();
+    List<BotTipe> getRandomBotTipes();
 
     @Query("SELECT * FROM BotTipe WHERE botTipeName = 'Eco'")
-    List<BotTipe> getEcoBotTypes();
+    List<BotTipe> getEcoBotTipes();
+
+    @Query("SELECT * FROM BotTipe WHERE botTipeName = 'Output'")
+    List<BotTipe> getoutputBotTipes();
 }

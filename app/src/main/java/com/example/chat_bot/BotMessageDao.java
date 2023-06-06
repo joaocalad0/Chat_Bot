@@ -22,5 +22,8 @@ public interface BotMessageDao {
 
     @Query("SELECT * FROM BotMessage WHERE botTipe = 'Eco'")
     List<BotMessage> getEcoBotMessages();
+
+    @Query("SELECT * FROM BotMessage WHERE botTipe = 'Output'")
+    List<BotMessage> getOutputBotMessages();
 }
 
