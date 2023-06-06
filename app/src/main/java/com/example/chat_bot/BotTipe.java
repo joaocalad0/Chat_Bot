@@ -6,46 +6,33 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "BotTipe")
 public class BotTipe {
-
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "botTipeId")
-    private int BotTipeId;
+    private int botTipeId;
 
+    @ColumnInfo(name = "botTipeName")
+    private String botTipeName;
 
-    @ColumnInfo(name = "botTipe")
-    private String BotTipe;
-
-    @ColumnInfo(name = "botMessageId")
-    private int BotMessageId;
-
-
-    public BotTipe(int botTipeId, String botTipe, int botMessageId) {
-        BotTipeId = botTipeId;
-        BotTipe = botTipe;
-        BotMessageId = botMessageId;
+    public BotTipe(int botTipeId, String botTipeName) {
+        this.botTipeId = botTipeId;
+        this.botTipeName = botTipeName;
     }
 
+    // getters e setters
+
     public int getBotTipeId() {
-        return BotTipeId;
+        return botTipeId;
     }
 
     public void setBotTipeId(int botTipeId) {
-        BotTipeId = botTipeId;
+        this.botTipeId = botTipeId;
     }
 
-    public String getBotTipe() {
-        return BotTipe;
+    public String getBotTipeName() {
+        return botTipeName;
     }
 
-    public void setBotTipe(String botTipe) {
-        BotTipe = botTipe;
-    }
-
-    public int getBotMessageId() {
-        return BotMessageId;
-    }
-
-    public void setBotMessageId(int botMessageId) {
-        BotMessageId = botMessageId;
+    public void setBotTipeName(String botTipeName) {
+        this.botTipeName = botTipeName;
     }
 }
