@@ -20,10 +20,8 @@ public interface BotMessageDao {
     @Query("SELECT * FROM BotMessage WHERE botTipe = 'Random'")
     List<BotMessage> getRandomBotMessages();
 
-    @Query("SELECT * FROM BotMessage WHERE botTipe = 'Eco'")
-    List<BotMessage> getEcoBotMessages();
 
-    @Query("SELECT * FROM BotMessage WHERE botTipe = 'Output'")
-    List<BotMessage> getOutputBotMessages();
+    @Query("SELECT messageContent FROM BotMessage WHERE botTipe = :botTipe AND messageReceive = :messageReceive")
+    List<BotMessage> getMessage(int botTipe, String messageReceive);
 }
 

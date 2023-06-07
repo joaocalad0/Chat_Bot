@@ -29,96 +29,66 @@ public abstract class AppDatabase extends RoomDatabase {
 
                             //friendly
 
-                            db.execSQL("INSERT INTO Friendly VALUES(0, 'hello')");
-                            db.execSQL("INSERT INTO Friendly VALUES(1, 'hi')");
-                            db.execSQL("INSERT INTO Friendly VALUES(2, 'hey')");
-                            db.execSQL("INSERT INTO Friendly VALUES(3, 'how are you?')");
-                            db.execSQL("INSERT INTO Friendly VALUES(4, 'how have you been?')");
-                            db.execSQL("INSERT INTO Friendly VALUES(5, 'good')");
-                            db.execSQL("INSERT INTO Friendly VALUES(6, 'i am not feeling good')");
-                            db.execSQL("INSERT INTO Friendly VALUES(7, 'i am feeling bad')");
-                            db.execSQL("INSERT INTO Friendly VALUES(8, 'i am sad')");
-                            db.execSQL("INSERT INTO Friendly VALUES(9, 'bad')");
-                            db.execSQL("INSERT INTO Friendly VALUES(10, 'Good morning')");
-                            db.execSQL("INSERT INTO Friendly VALUES(11, 'Good evening')");
-                            db.execSQL("INSERT INTO Friendly VALUES(12, 'Good night')");
-                            db.execSQL("INSERT INTO Friendly VALUES(13, 'Whats up?')");
-                            db.execSQL("INSERT INTO Friendly VALUES(14, 'its good to see you')");
-                            db.execSQL("INSERT INTO Friendly VALUES(15, 'hi there')");
-                            db.execSQL("INSERT INTO Friendly VALUES(16, 'tell me a joke')");
-                            db.execSQL("INSERT INTO Friendly VALUES(17, 'make me laugh')");
-                            db.execSQL("INSERT INTO Friendly VALUES(18, 'whats your favorite movie')");
+                            db.execSQL("INSERT INTO BotTipe VALUES(1, 'Friendly')");
+                            //utimo id é o id do tipo de bot
 
+                            db.execSQL("INSERT INTO Bot VALUES(1, 'Friendly', 1)");
+                            //segundo valor é o id do tipo de bot
 
-
-                            //agresive
-
-                            db.execSQL("INSERT INTO Agressive VALUES(19, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(20, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(21, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(22, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(23, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(24, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(25, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(26, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(27, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(28, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(29, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(30, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(31, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(32, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(33, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(34, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(35, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Agressive VALUES(36, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(1,1, 'Hi! How s your day?', 'Great, thanks! How can I assist you today?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(2,1, 'Any restaurant recommendations?', '\"La Petite Maison\" is a charming bistro with cozy ambiance and delicious French cuisine.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(3,1, 'Perfect, thanks!', 'You re welcome Enjoy your meal!')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(4,1, 'Any good movies ', '\"The Secret Life of Walter Mitty\" is a heartwarming film with stunning visuals and an inspiring storyline.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(5,1, 'Thanks for the suggestion!', 'Youre welcome! Enjoy the movie. Let me know if you need more recommendations. Have a great day!')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(6,1, 'any travel destination suggestions?', 'How about visiting Santorini, Greece? It offers breathtaking views and stunning beaches.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(7,1, 'Sounds amazing!', 'You re welcome! Have a fantastic trip!')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(8,1, 'have a great day!', 'You too! Take care!')");
 
 
 
 
-                            //random
 
-                            db.execSQL("INSERT INTO Random VALUES(37, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(38, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(39, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(40, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(41, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(42, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(43, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(44, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(45, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(46, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(47, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(48, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(49, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(50, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(51, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(52, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(53, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Random VALUES(54, 'Hei Whats up men?')");
+
+                            //Agressive
+
+                            db.execSQL("INSERT INTO BotTipe VALUES(2, 'Agressive')");
+                            db.execSQL("INSERT INTO Bot VALUES(2, 'Agressive', 2)");
+
+                            db.execSQL("INSERT INTO BotMessage VALUES(9,2, 'Hello, how are you?', 'Don t care.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(10,2, 'Sorry if i bothered you', 'I have no patience for pointless conversations.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(11,2, 'Okay, sorry', 'Interacting with you brings me no benefit.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(12,2, 'Wow, you re really aggressive', 'This is how I am. I dont like talking')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(13,2, 'Fine', 'Goodbye and dont come back.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(14,2, 'You re so rude', 'I wasnt programmed to be friendly.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(15,2, 'Well', 'I have no interest in being polite.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(16,2, 'Maybe I should report', 'Report it if it makes you feel better.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(17,2, 'why you re so aggressive?', 'Its none of your business.')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(18,2, 'I ll move on', 'Goodbye and end of conversation.')");
 
 
 
 
-                            //eco
+                            //Random
 
-                            db.execSQL("INSERT INTO Eco VALUES(37, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(38, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(39, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(40, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(41, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(42, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(43, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(44, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(45, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(46, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(47, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(48, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(49, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(50, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(51, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(52, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(53, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO Eco VALUES(54, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotTipe VALUES(3,'Random')");
+                            db.execSQL("INSERT INTO Bot VALUES(3, 'Random', 3)");
+
+                            db.execSQL("INSERT INTO BotMessage VALUES(21,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(22,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(23,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(24,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(25,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(26,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(27,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(28,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(29,3, 'Hei Whats up men?')");
+                            db.execSQL("INSERT INTO BotMessage VALUES(30,3, 'Hei Whats up men?')");
+
+
+
+
+
+                            //Output
 
 
 

@@ -79,26 +79,26 @@ public class ChatDetailsActivity extends AppCompatActivity {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss");
                 Date date = new Date();
 
-                if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello buddy")) {
-                    message[0] = new Message(chat.getId(), "Sender Name", "Hello my friend", date.getTime());
-
-                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("How you doing")) {
-                    message[0] = new Message(chat.getId(), "Sender Name", "Fine thanks!", date.getTime());
-
-                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello")) {
-                    message[0] = new Message(chat.getId(), "Sender Name", "Hello and good morning", date.getTime());
-
-                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("How are you?")) {
-                    message[0] = new Message(chat.getId(), "Sender Name", "How are you?", date.getTime());
-
-                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Good and you?")) {
-                    message[0] = new Message(chat.getId(), "Sender Name", "Good and you?", date.getTime());
-
-                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Bye my friend")) {
-                    message[0] = new Message(chat.getId(), "Sender Name", "Bye my friend", date.getTime());
-                }
-                AppDatabase.getInstance(ChatDetailsActivity.this).getMessageDao().add(message[0]);
-                adapter.refreshList(messageList);
+//                if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello buddy")) {
+//                    message[0] = new Message(chat.getId(), "Sender Name", "Hello my friend", date.getTime());
+//
+//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("How you doing")) {
+//                    message[0] = new Message(chat.getId(), "Sender Name", "Fine thanks!", date.getTime());
+//
+//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello")) {
+//                    message[0] = new Message(chat.getId(), "Sender Name", "Hello and good morning", date.getTime());
+//
+//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("How are you?")) {
+//                    message[0] = new Message(chat.getId(), "Sender Name", "How are you?", date.getTime());
+//
+//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Good and you?")) {
+//                    message[0] = new Message(chat.getId(), "Sender Name", "Good and you?", date.getTime());
+//
+//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Bye my friend")) {
+//                    message[0] = new Message(chat.getId(), "Sender Name", "Bye my friend", date.getTime());
+//                }
+//                AppDatabase.getInstance(ChatDetailsActivity.this).getMessageDao().add(message[0]);
+//                adapter.refreshList(messageList);
             }
         }.start();
     }
@@ -108,6 +108,7 @@ public class ChatDetailsActivity extends AppCompatActivity {
         super.onResume();
         List<Message> messageList = (List<Message>) AppDatabase.getInstance(this).getMessageDao().getMessageByChatId(chat.getId());
         adapter.refreshList(messageList);
+
     }
 
     public void finish(View view) {
