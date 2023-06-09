@@ -8,10 +8,10 @@
     tools:context=".ChatDetailsActivity">
 
     <EditText
-        android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:id="@+id/edit_text_message"
+        android:layout_width="242dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="40dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#81FFD9"
         android:ems="10"
@@ -36,17 +36,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageViewAvatar"
-        android:layout_width="60dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.559"
-        app:layout_constraintStart_toEndOf="@+id/textViewName"
-        app:srcCompat="@drawable/bxs_paper_plane" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -69,5 +58,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button_send"
+        android:layout_width="54dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bx_send"
+        android:backgroundTint="#81FFD9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toEndOf="@+id/textViewName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

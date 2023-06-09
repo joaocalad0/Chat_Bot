@@ -21,9 +21,12 @@ public class BotMessage {
     @ColumnInfo(name = "messageContent")
     private String messageContent;
 
-    public BotMessage(String botTipe, String messageContent) {
+    public BotMessage(String botTipe, String messageReceive ,String messageContent) {
         this.botTipe = botTipe;
         this.messageContent = messageContent;
+    }
+
+    public BotMessage() {
     }
 
     // getters e setters
@@ -37,12 +40,12 @@ public class BotMessage {
         this.botMessageId = botMessageId;
     }
 
-    public String getBotType() {
+    public String getBotTipe() {
         return botTipe;
     }
 
-    public void setBotType(String botType) {
-        this.botTipe = botType;
+    public void setBotTipe(String botTipe) {
+        this.botTipe = botTipe;
     }
 
     public String getMessageContent() {

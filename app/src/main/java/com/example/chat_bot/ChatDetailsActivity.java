@@ -12,6 +12,7 @@ import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Date;
@@ -102,6 +103,21 @@ public class ChatDetailsActivity extends AppCompatActivity {
             }
         }.start();
     }
+
+    Button buttonSend = findViewById(R.id.button_send);
+    EditText editTextMessage = findViewById(R.id.edit_text_message);
+
+     buttonSend.setOnClickListener(new View.OnClickListener()
+
+    {
+        @Override
+        public void onClick; (View v){
+        String message = editTextMessage.getText().toString();
+
+        editTextMessage.setText("");
+    }
+    });
+
 
     @Override
     protected void onResume() {
