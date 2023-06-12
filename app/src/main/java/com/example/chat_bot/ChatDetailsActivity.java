@@ -120,7 +120,7 @@ public class ChatDetailsActivity extends AppCompatActivity {
                  String message = editTextMessage.getText().toString();
                  editTextMessage.setText("");
 
-                 Message userMessage = new Message(1,"2", message,  22);
+                 Message userMessage = new Message(1,"sender name", message,  2);
 
              }
 

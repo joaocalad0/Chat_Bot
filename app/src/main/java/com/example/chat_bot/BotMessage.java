@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "BotMessage", foreignKeys = {@ForeignKey(entity = BotTipe.class, parentColumns = "botTipeId", childColumns = "botTipeId")})
+@Entity(tableName = "BotMessage", foreignKeys = {@ForeignKey(entity = BotTipe.class, parentColumns = "botTipeId", childColumns = "botMessageId")})
 public class BotMessage {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "botMessageId")
