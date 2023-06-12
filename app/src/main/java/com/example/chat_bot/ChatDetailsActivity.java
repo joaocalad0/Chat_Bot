@@ -19,13 +19,14 @@ import java.util.Date;
 import java.util.List;
 
 public class ChatDetailsActivity extends AppCompatActivity {
-    public static void startActivity(Context context, int id) {
+
+    private static final String KEY_CHAT_ID = "CHAT_ID";
+    public static void startActivity(Context context, long id) {
         Intent intent = new Intent(context, ChatDetailsActivity.class);
         intent.putExtra(KEY_CHAT_ID, id);
         context.startActivity(intent);
     }
 
-    private static final String KEY_CHAT_ID = "CHAT_ID";
     private RecyclerView recyclerView;
     private Chat chat;
     private MessageAdapter adapter;
@@ -105,19 +106,27 @@ public class ChatDetailsActivity extends AppCompatActivity {
     }
 
     Button buttonSend = findViewById(R.id.button_send);
+
     EditText editTextMessage = findViewById(R.id.edit_text_message);
 
-     buttonSend.setOnClickListener(new View.OnClickListener()
+     public void test(){
+         Button buttonSend = findViewById(R.id.button_send);
 
-    {
-        @Override
-        public void onClick; (View v){
-        String message = editTextMessage.getText().toString();
+         EditText editTextMessage = findViewById(R.id.edit_text_message);
 
-        editTextMessage.setText("");
-    }
-    });
+         buttonSend.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 String message = editTextMessage.getText().toString();
+                 editTextMessage.setText("");
 
+                 Message userMessage = new Message(1,"2", message,  22);
+
+             }
+
+
+         });
+     }
 
     @Override
     protected void onResume() {

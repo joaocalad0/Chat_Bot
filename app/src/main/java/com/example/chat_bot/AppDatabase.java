@@ -83,7 +83,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO BotMessage VALUES(28,3, 'Hei Whats up men?')");
 
 
-                            //TODO finish isnert randoms
+                            //TODO finish insert randoms
 
 
                         }
