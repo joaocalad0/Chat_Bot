@@ -16,7 +16,7 @@ public interface MessageDao {
     List<Message> getAll();
 
     @Query("SELECT * FROM message WHERE message.chat_id = :chat_id")
-    Message getMessageByChatId(long chat_id);
+    List<Message> getMessageByChatId(long chat_id);
 
     @Insert
     void insert(Message message);

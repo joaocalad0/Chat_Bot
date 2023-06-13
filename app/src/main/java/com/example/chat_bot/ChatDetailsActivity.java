@@ -14,129 +14,96 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class ChatDetailsActivity extends AppCompatActivity {
 
     private static final String KEY_CHAT_ID = "CHAT_ID";
-    public static void startActivity(Context context, long id) {
-        Intent intent = new Intent(context, ChatDetailsActivity.class);
-        intent.putExtra(KEY_CHAT_ID, id);
-        context.startActivity(intent);
-    }
+
+    private Button buttonSend;
+    private EditText editTextMessage;
 
     private RecyclerView recyclerView;
     private Chat chat;
     private MessageAdapter adapter;
+    private long chatId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_details);
 
-        int chatId = -1;
-        if (getIntent().getExtras() != null) {
-            chatId = getIntent().getExtras().getInt(KEY_CHAT_ID, -1);
-        }
-
-        if (chatId == -1) {
-            finish();
-            return;
-        }
+        this.chatId = getIntent().getIntExtra(KEY_CHAT_ID, 0);
 
         ActionBar actionBar = getSupportActionBar();
         recyclerView = findViewById(R.id.recyclerView1);
+        buttonSend = findViewById(R.id.button_send);
+        editTextMessage = findViewById(R.id.edit_text_message);
 
         this.chat = AppDatabase.getInstance(this).getChatDao().getById(chatId);
         if (chat != null) {
-            List<Message> messageList = (List<Message>) AppDatabase.getInstance(this).getMessageDao().getMessageByChatId(chat.getId());
+            List<Message> messageList = AppDatabase.getInstance(this).getMessageDao().getMessageByChatId(chat.getId());
             adapter = new MessageAdapter(messageList, this);
             actionBar.setTitle(chat.getName());
-        } else {
-            finish();
         }
 
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-    }
 
-    public void sendMessage(View view) {
-        EditText editText = findViewById(R.id.editMessage);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss");
-        Date date = new Date();
+        buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String messageContent = editTextMessage.getText().toString();
+                editTextMessage.setText("");
+                if (!messageContent.isEmpty()) {
+                    // Cria uma nova instância de Message
+                    long timestamp = System.currentTimeMillis();
+                    Message userMessage = new Message(chatId, "", messageContent, timestamp);
 
-        final Message[] message = {new Message(chat.getId(), "Sender Name", editText.getText().toString(), date.getTime())};
-        AppDatabase.getInstance(this).getMessageDao().add(message[0]);
-        editText.setText("");
-        List<Message> messageList = AppDatabase.getInstance(this).getMessageDao().getAll();
-        new CountDownTimer(2000, 1000) {
-            public void onTick(long millisUntilFinished) {
+                    // Adiciona a mensagem a appdatabase
+                    AppDatabase db = AppDatabase.getInstance(ChatDetailsActivity.this);
+                    MessageDao messageDao = db.getMessageDao();
+                    messageDao.add(userMessage);
+
+                    // Verifica se o bot é do tipo "Random"
+                    Bot bot = db.getBotDao().getById((int) chat.getBotId());
+                    if (bot != null && bot.getBotTipeId() == 3) {
+                        Message randomBotMessage = getRandomBotMessage(db, bot.getId());
+                        if (randomBotMessage != null) {
+                            randomBotMessage.setTimestamp(timestamp + 1000); // Adiciona um pequeno atraso à mensagem do bot
+                            messageDao.add(randomBotMessage);
+                        }
+                    }
+
+                    // Atualizar a lista de mensagens exibidas na RecyclerView
+                    adapter.refreshList(messageDao.getMessageByChatId(chat.getId()));
+                }
             }
-
-            public void onFinish() {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss");
-                Date date = new Date();
-
-//                if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello buddy")) {
-//                    message[0] = new Message(chat.getId(), "Sender Name", "Hello my friend", date.getTime());
-//
-//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("How you doing")) {
-//                    message[0] = new Message(chat.getId(), "Sender Name", "Fine thanks!", date.getTime());
-//
-//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Hello")) {
-//                    message[0] = new Message(chat.getId(), "Sender Name", "Hello and good morning", date.getTime());
-//
-//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("How are you?")) {
-//                    message[0] = new Message(chat.getId(), "Sender Name", "How are you?", date.getTime());
-//
-//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Good and you?")) {
-//                    message[0] = new Message(chat.getId(), "Sender Name", "Good and you?", date.getTime());
-//
-//                } else if (messageList.get(messageList.size() - 1).getContent().equalsIgnoreCase("Bye my friend")) {
-//                    message[0] = new Message(chat.getId(), "Sender Name", "Bye my friend", date.getTime());
-//                }
-//                AppDatabase.getInstance(ChatDetailsActivity.this).getMessageDao().add(message[0]);
-//                adapter.refreshList(messageList);
-            }
-        }.start();
+        });
     }
 
-    Button buttonSend = findViewById(R.id.button_send);
-
-    EditText editTextMessage = findViewById(R.id.edit_text_message);
-
-     public void test(){
-         Button buttonSend = findViewById(R.id.button_send);
-
-         EditText editTextMessage = findViewById(R.id.edit_text_message);
-
-         buttonSend.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 String message = editTextMessage.getText().toString();
-                 editTextMessage.setText("");
-
-                 Message userMessage = new Message(1,"sender name", message,  2);
-
-             }
+    private Message getRandomBotMessage(AppDatabase db, int botId) {
+        List<BotMessage> botMessages = db.getBotMessageDao().getBotMessagesByBotId(botId);
+        if (botMessages != null && !botMessages.isEmpty()) {
+            Random random = new Random();
+            int randomIndex = random.nextInt(botMessages.size());
+            BotMessage randomBotMessage = botMessages.get(randomIndex);
+            return new Message(chatId, "Bot", randomBotMessage.getQuestion(), randomBotMessage.getAnswer());
 
 
-         });
-     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        List<Message> messageList = (List<Message>) AppDatabase.getInstance(this).getMessageDao().getMessageByChatId(chat.getId());
-        adapter.refreshList(messageList);
 
-    }
 
-    public void finish(View view) {
-        finish();
+        }
+        return null;
     }
 }

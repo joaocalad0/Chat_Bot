@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "BotMessage", foreignKeys = {@ForeignKey(entity = BotTipe.class, parentColumns = "botTipeId", childColumns = "botMessageId")})
+@Entity(tableName = "BotMessage", foreignKeys = {@ForeignKey(entity = BotTipe.class, parentColumns = "botTipeId", childColumns = "botTipe")})
 public class BotMessage {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "botMessageId")
@@ -21,8 +21,9 @@ public class BotMessage {
     @ColumnInfo(name = "messageContent")
     private String messageContent;
 
-    public BotMessage(String botTipe, String messageReceive ,String messageContent) {
+    public BotMessage(String botTipe, String messageReceive, String messageContent) {
         this.botTipe = botTipe;
+        this.messageReceive = messageReceive;
         this.messageContent = messageContent;
     }
 
@@ -30,7 +31,6 @@ public class BotMessage {
     }
 
     // getters e setters
-
 
     public int getBotMessageId() {
         return botMessageId;
@@ -48,6 +48,14 @@ public class BotMessage {
         this.botTipe = botTipe;
     }
 
+    public String getMessageReceive() {
+        return messageReceive;
+    }
+
+    public void setMessageReceive(String messageReceive) {
+        this.messageReceive = messageReceive;
+    }
+
     public String getMessageContent() {
         return messageContent;
     }
@@ -56,17 +64,11 @@ public class BotMessage {
         this.messageContent = messageContent;
     }
 
-    public BotMessage(String messageReceive) {
-        this.messageReceive = messageReceive;
+    public String getQuestion() {
+        return getMessageReceive();
     }
 
-    public String getMessageReceive() {
-        return messageReceive;
-    }
-
-    public void setMessageReceive(String messageReceive) {
-        this.messageReceive = messageReceive;
+    public String getAnswer() {
+        return getMessageContent();
     }
 }
-
-

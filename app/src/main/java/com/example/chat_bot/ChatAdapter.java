@@ -1,5 +1,8 @@
 package com.example.chat_bot;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,14 +25,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     private ChatAdapterEventListener eventListener;
 
+    private Context context;
     /**
      * Construtor que um objeto que implemente o interface ContactAdapterEventListener
      * @param eventLister
      */
-    public ChatAdapter(ChatAdapterEventListener eventLister) {
+    public ChatAdapter(ChatAdapterEventListener eventLister, Context context) {
         // armazenar na variável de instância o valor do parâmetro do construtor
         this.chatList = new ArrayList<>();
         this.eventListener = eventLister;
+        this.context = context;
     }
 
     /**
@@ -47,11 +53,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             // is Favorite
             View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_favorite, parent, false);
             // criar e devolver um objeto do tipo ChatViewHolder
-            return new ChatFavoriteViewHolder(rootView);
+            return new ChatFavoriteViewHolder(rootView, parent.getContext());
         }
         View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item, parent, false);
         // criar e devolver um objeto do tipo ChatViewHolder
-        return new ChatNormalViewHolder(rootView);
+        return new ChatNormalViewHolder(rootView, parent.getContext());
     }
 
     /**
@@ -71,7 +77,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (eventListener != null) eventListener.onChatClicked(chat.getId());
+                if(eventListener != null){
+                    eventListener.onChatClicked(chat.getId());
+                }
             }
         });
 
@@ -97,17 +105,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return this.chatList.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        Chat chat = chatList.get(position);
-//        if (contact.isFavorite()) {
-//            return 1;
-//        }
-//        re
-//
-         return 0;
-        //return chat.isFavorite() ? 1 : 0;
-    }
+
 
     public void refreshList(List<Chat> newChatList) {
         this.chatList = newChatList;
@@ -117,26 +115,30 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public class ChatViewHolder extends RecyclerView.ViewHolder {
 
         private View rootView;
+        private Context context;
         private TextView textViewName;
         private ImageView imageViewAvatar;
+        public ConstraintLayout ConstraintLayout;
 
-        public ChatViewHolder(@NonNull View rootView) {
+        public ChatViewHolder(@NonNull View rootView, Context context) {
             super(rootView);
             this.rootView = rootView;
+            this.context = context;
             this.textViewName = rootView.findViewById(R.id.textViewName);
             this.imageViewAvatar = rootView.findViewById(R.id.imageViewAvatar);
+            this.ConstraintLayout = rootView.findViewById(R.id.ConstraintLayout);
         }
     }
 
     public class ChatFavoriteViewHolder extends ChatViewHolder {
-        public ChatFavoriteViewHolder(@NonNull View rootView) {
-            super(rootView);
+        public ChatFavoriteViewHolder(@NonNull View rootView, Context context) {
+            super(rootView, context);
         }
     }
 
     public class ChatNormalViewHolder extends ChatViewHolder {
-        public ChatNormalViewHolder(@NonNull View rootView) {
-            super(rootView);
+        public ChatNormalViewHolder(@NonNull View rootView, Context context) {
+            super(rootView, context);
         }
     }
 

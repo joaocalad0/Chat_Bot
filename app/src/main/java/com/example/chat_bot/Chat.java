@@ -12,10 +12,13 @@ public class Chat {
 
     private String date;
 
-    public Chat(String name, String text, String date) {
+    private long BotId;
+
+    public Chat(String name, String text, String date, long BotId) {
         this.name = name;
         this.text = text;
         this.date = date;
+        this.BotId = BotId;
     }
 
     public long getId() {
@@ -48,5 +51,14 @@ public class Chat {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+
+    public long getBotId() {
+        return BotId;
+    }
+
+    public void setBotId(long botId) {
+        BotId = botId;
     }
 }

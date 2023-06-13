@@ -21,12 +21,6 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateAccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".loginActivity"
-            android:exported="false" />
-        <activity
             android:name=".ChatDetailsActivity"
             android:exported="false" />
         <activity

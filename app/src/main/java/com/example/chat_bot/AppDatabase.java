@@ -8,13 +8,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Chat.class, Message.class, BotMessage.class, BotTipe.class}, version = 1)
+@Database(entities = {Chat.class, Message.class, BotMessage.class, Bot.class, BotTipe.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ChatDao getChatDao();
     public abstract MessageDao getMessageDao();
     public abstract BotTipeDao getBotTipeDao();
-    public abstract BotMessageDao getBotMessage();
+    public abstract BotMessageDao getBotMessageDao();
+    public abstract BotDao getBotDao();
 
     private static AppDatabase INSTANCE;
 
@@ -76,11 +77,11 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO BotMessage VALUES(21,3, 'whats your name?','whats your name?')");
                             db.execSQL("INSERT INTO BotMessage VALUES(22,3, 'tell me something new','did you know that the first programming algorithm was created by Ada Lovelace?')");
                             db.execSQL("INSERT INTO BotMessage VALUES(23,3, 'another fact' ,'programmers day is celebrated on the 256th day of the year ')");
-                            db.execSQL("INSERT INTO BotMessage VALUES(24,3, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO BotMessage VALUES(25,3, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO BotMessage VALUES(26,3, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO BotMessage VALUES(27,3, 'Hei Whats up men?')");
-                            db.execSQL("INSERT INTO BotMessage VALUES(28,3, 'Hei Whats up men?')");
+//                            db.execSQL("INSERT INTO BotMessage VALUES(24,3, 'Hei Whats up men?')");
+//                            db.execSQL("INSERT INTO BotMessage VALUES(25,3, 'Hei Whats up men?')");
+//                            db.execSQL("INSERT INTO BotMessage VALUES(26,3, 'Hei Whats up men?')");
+//                            db.execSQL("INSERT INTO BotMessage VALUES(27,3, 'Hei Whats up men?')");
+//                            db.execSQL("INSERT INTO BotMessage VALUES(28,3, 'Hei Whats up men?')");
 
 
                             //TODO finish insert randoms

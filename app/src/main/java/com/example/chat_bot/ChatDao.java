@@ -16,6 +16,8 @@ public interface ChatDao {
 
     @Query("SELECT * FROM chat WHERE id = :Id")
     Chat getById(long Id);
+    @Query("SELECT b.botId FROM Bot b INNER JOIN BotTipe bt ON b.botTipeId = bt.botTipeId WHERE bt.botTipeName = :tipeName")
+    int getBotIdByTipeName(String tipeName);
 
     @Insert
     void insert(Chat chat);

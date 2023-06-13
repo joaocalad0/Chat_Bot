@@ -15,7 +15,7 @@ public class RulesActivity extends AppCompatActivity {
     }
 
     public void accept (View view) {
-        Intent accept = new Intent(this,  loginActivity.class);
+        Intent accept = new Intent(this,  MainActivity.class);
         startActivity(accept);
     }
 }

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         AppDatabase db = AppDatabase.getInstance(this);
         ChatDao chatDao = db.getChatDao();
-        adapter = new ChatAdapter(this);
+        adapter = new ChatAdapter(this, MainActivity.this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
     protected void onStart() {
         super.onStart();
         List<Chat> newChatList = AppDatabase.getInstance(this).getChatDao().getAll();
-        adapter.refreshList(newChatList);
+        this.adapter.refreshList(newChatList);
     }
 
     public void addChat(View view) {
@@ -47,9 +48,14 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
 
     @Override
     public void onChatClicked(long chatId) {
-        Intent intent = new Intent(this, ChatDetailsActivity.class);
+//        Intent intent = new Intent(this, ChatDetailsActivity.class);
+//        intent.putExtra("KEY_CHAT_ID", chatId);
+//        startActivity(intent);
+        Intent intent = new Intent(MainActivity.this,ChatDetailsActivity.class);
         intent.putExtra("KEY_CHAT_ID", chatId);
         startActivity(intent);
+
+
     }
 
     @Override

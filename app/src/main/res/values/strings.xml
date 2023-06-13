@@ -10,4 +10,7 @@ The user undertakes not to inform third parties of their registration and/or acc
     <string name="createAccount">Create Account!</string>
     <string name="email">Email</string>
     <string name="crate">Create!</string>
+    <string name="friendly">Friendly</string>
+    <string name="agressive">Agressive</string>
+    <string name="random">Random</string>
 </resources>

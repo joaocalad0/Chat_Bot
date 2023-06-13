@@ -7,90 +7,71 @@
     android:background="#051726"
     tools:context=".AddChatActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="160dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bx_bot" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="72dp"
         android:text="ADD CHAT"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="56dp"
         android:backgroundTint="#81FFD9"
-        android:text="ADD"
+        android:text="@string/agressive"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/editTextAvatar"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/editTextAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAvatar" />
-
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="#81FFD9"
-        android:ems="10"
-        android:hint="Chat Name"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:onClick="addChat"
-        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/editTextPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="115dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#81FFD9"
-        android:ems="10"
-        android:hint="Bot Type"
-        android:inputType="text"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/editTextName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:text="@string/friendly"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
-    <EditText
-        android:id="@+id/editTextAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="114dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#81FFD9"
-        android:ems="10"
-        android:hint="Avatar"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPhoneNumber"
+        android:text="@string/random"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/button5"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPhoneNumber"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="156dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="96dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chatbot_high_resolution_logo_color_on_transparent_background" />
+        app:layout_constraintStart_toStartOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

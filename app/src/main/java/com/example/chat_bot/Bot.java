@@ -25,6 +25,9 @@ public class Bot {
         this.botTipeId = botTipeId;
     }
 
+    public Bot() {
+
+    }
 
     public int getBotId() {
         return botId;
@@ -48,5 +51,9 @@ public class Bot {
 
     public void setBotTipeId(int botTipeId) {
         this.botTipeId = botTipeId;
+    }
+
+    public int getId() {
+        return botId;
     }
 }
