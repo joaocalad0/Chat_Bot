@@ -13,7 +13,7 @@ public class Bot {
     private int botId;
 
     @ColumnInfo(name = "BotName")
-    private String BotName;
+    private String botName;
 
     @ColumnInfo(name = "botTipeId")
     private int botTipeId;
@@ -21,7 +21,7 @@ public class Bot {
 
     public Bot(int botId, String botName, int botTipeId) {
         this.botId = botId;
-        BotName = botName;
+        this.botName = botName;
         this.botTipeId = botTipeId;
     }
 
@@ -38,11 +38,11 @@ public class Bot {
     }
 
     public String getBotName() {
-        return BotName;
+        return botName;
     }
 
     public void setBotName(String botName) {
-        BotName = botName;
+        this.botName = botName;
     }
 
     public int getBotTipeId() {

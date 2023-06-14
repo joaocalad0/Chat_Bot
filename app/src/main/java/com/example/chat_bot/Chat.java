@@ -9,9 +9,7 @@ public class Chat {
     private long id;
     private String name;
     private String text;
-
     private String date;
-
     private long BotId;
 
     public Chat(String name, String text, String date, long BotId) {
@@ -52,7 +50,6 @@ public class Chat {
     public void setDate(String date) {
         this.date = date;
     }
-
 
     public long getBotId() {
         return BotId;

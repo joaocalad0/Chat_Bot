@@ -10,10 +10,10 @@ import java.util.Date;
 public class Message {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "message_id")
-    private long messageId;
+    private Long messageId;
 
     @ColumnInfo(name = "chat_id")
-    private String chatId;
+    private Long chatId;
 
     @ColumnInfo(name = "sender")
     private String sender;
@@ -22,30 +22,33 @@ public class Message {
     private String content;
 
     @ColumnInfo(name = "timestamp")
-    private long timestamp;
+    private Long timestamp;
 
     // Construtor e métodos getters/setters
-
-    public Message(long chatId, String sender, String content, String timestamp) {
+    public Message(Long chatId, String sender, String content, Long timestamp) {
         this.chatId = chatId;
         this.sender = sender;
         this.content = content;
         this.timestamp = timestamp;
     }
 
-    public long getMessageId() {
+    public Message() {
+
+    }
+
+    public Long getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(long messageId) {
+    public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }
 
-    public String getChatId() {
+    public Long getChatId() {
         return chatId;
     }
 
-    public void setChatId(String chatId) {
+    public void setChatId(Long chatId) {
         this.chatId = chatId;
     }
 
@@ -65,11 +68,11 @@ public class Message {
         this.content = content;
     }
 
-    public long getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 

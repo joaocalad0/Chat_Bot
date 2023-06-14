@@ -26,8 +26,24 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.bot_message_item, parent, false);
+        View view;
+        if (viewType == R.layout.bot_message_item) {
+            view = LayoutInflater.from(context).inflate(R.layout.bot_message_item, parent, false);
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.user_message_iteml, parent, false);
+        }
         return new MessageViewHolder(view);
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        Message message = messageList.get(position);
+        if (message.getSender().equals("BotMessage")) {
+            return R.layout.bot_message_item;
+        } else {
+            return R.layout.user_message_iteml;
+        }
     }
 
     @Override
@@ -48,9 +64,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewSender = itemView.findViewById(R.id.text_view_sender);
-            textViewContent = itemView.findViewById(R.id.text_view_content);
-            textViewTimestamp = itemView.findViewById(R.id.text_view_timestamp);
+            textViewSender = itemView.findViewById(R.id.text_view_sender_bot);
+            textViewContent = itemView.findViewById(R.id.text_view_content_bot);
+            textViewTimestamp = itemView.findViewById(R.id.text_view_timestamp_bot);
+
+
+            //ids user
+            textViewSender = itemView.findViewById(R.id.text_view_sender_user);
+            textViewContent = itemView.findViewById(R.id.text_view_content_user);
+            textViewTimestamp = itemView.findViewById(R.id.text_view_timestamp_user);
         }
 
         public void bind(Message message) {

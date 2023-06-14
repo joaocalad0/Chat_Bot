@@ -1,5 +1,7 @@
 package com.example.chat_bot;
 
+import static com.example.chat_bot.ChatDetailsActivity.KEY_CHAT_ID;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,9 +25,7 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mainActivity = this;
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         AppDatabase db = AppDatabase.getInstance(this);
         ChatDao chatDao = db.getChatDao();
@@ -48,25 +48,18 @@ public class MainActivity extends AppCompatActivity implements ChatAdapter.ChatA
 
     @Override
     public void onChatClicked(long chatId) {
-//        Intent intent = new Intent(this, ChatDetailsActivity.class);
-//        intent.putExtra("KEY_CHAT_ID", chatId);
-//        startActivity(intent);
-        Intent intent = new Intent(MainActivity.this,ChatDetailsActivity.class);
-        intent.putExtra("KEY_CHAT_ID", chatId);
+        Intent intent = new Intent(MainActivity.this, ChatDetailsActivity.class);
+        intent.putExtra(KEY_CHAT_ID, chatId);
         startActivity(intent);
-
-
     }
 
     @Override
     public void onChatLongClicked(long chatId) {
         ChatDao chatDao = AppDatabase.getInstance(MainActivity.this).getChatDao();
         Chat chat = chatDao.getById(chatId);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete Chat");
         builder.setMessage("Do you really want to delete " + chat.getName() + "?");
-
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

@@ -105,8 +105,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return this.chatList.size();
     }
 
-
-
     public void refreshList(List<Chat> newChatList) {
         this.chatList = newChatList;
         notifyDataSetChanged();
