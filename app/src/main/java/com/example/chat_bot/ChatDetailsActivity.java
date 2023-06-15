@@ -38,6 +38,7 @@ public class ChatDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_details);
 
+
         this.chatId = getIntent().getLongExtra(KEY_CHAT_ID, 0L);
         recyclerView = findViewById(R.id.recyclerView1);
         buttonSend = findViewById(R.id.button_send);
@@ -67,7 +68,7 @@ public class ChatDetailsActivity extends AppCompatActivity {
                     MessageDao messageDao = db.getMessageDao();
                     messageDao.add(userMessage);
 
-                    // Verifica se o bot é do tipo "Random"
+
                     Bot bot = db.getBotDao().getById((int) chat.getBotId());
                     List<BotMessage> botMessages = db.getBotMessageDao().getBotMessagesByBotId(bot.getBotId());
                     Message botMessage = getAnswer(messageContent, bot.getId(), botMessages);

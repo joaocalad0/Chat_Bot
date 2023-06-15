@@ -27,10 +27,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if (viewType == R.layout.bot_message_item) {
-            view = LayoutInflater.from(context).inflate(R.layout.bot_message_item, parent, false);
-        } else {
+        if (viewType == 1) {
             view = LayoutInflater.from(context).inflate(R.layout.user_message_iteml, parent, false);
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.bot_message_item, parent, false);
         }
         return new MessageViewHolder(view);
     }
@@ -39,10 +39,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public int getItemViewType(int position) {
         Message message = messageList.get(position);
-        if (message.getSender().equals("BotMessage")) {
-            return R.layout.bot_message_item;
+        if (message.getSender().equals("Bot")) {
+            return 0;
         } else {
-            return R.layout.user_message_iteml;
+            return 1;
         }
     }
 
@@ -74,6 +74,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             textViewContent = itemView.findViewById(R.id.text_view_content_user);
             textViewTimestamp = itemView.findViewById(R.id.text_view_timestamp_user);
         }
+
+
 
         public void bind(Message message) {
             textViewSender.setText(message.getSender());

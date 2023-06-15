@@ -36,7 +36,7 @@ public class AddChatActivity extends AppCompatActivity {
                 Chat newChat = new Chat("Friendly", "message",
                         ""+System.currentTimeMillis(), 1);
                 chatDao.insert(newChat);
-                Intent aggressive = new Intent(getApplicationContext(), ChatDetailsActivity.class);
+                Intent aggressive = new Intent(getApplicationContext(), MainActivity.class);
                 aggressive.putExtra(ChatDetailsActivity.KEY_CHAT_ID, newChat.getBotId());
                 startActivity(aggressive);
             }
@@ -50,7 +50,7 @@ public class AddChatActivity extends AppCompatActivity {
                 Chat newChat = new Chat("Agressive", "message",
                         ""+System.currentTimeMillis(), 2);
                 chatDao.insert(newChat);
-                Intent aggressive = new Intent(getApplicationContext(), ChatDetailsActivity.class);
+                Intent aggressive = new Intent(getApplicationContext(), MainActivity.class);
                 aggressive.putExtra(ChatDetailsActivity.KEY_CHAT_ID, newChat.getBotId());
                 startActivity(aggressive);
             }
@@ -64,7 +64,7 @@ public class AddChatActivity extends AppCompatActivity {
                 Chat newChat = new Chat("Random", "message",
                         ""+System.currentTimeMillis(), 3);
                 chatDao.insert(newChat);
-                Intent random = new Intent(getApplicationContext(), ChatDetailsActivity.class);
+                Intent random = new Intent(getApplicationContext(), MainActivity.class);
                 random.putExtra(ChatDetailsActivity.KEY_CHAT_ID, newChat.getBotId());
                 startActivity(random);
             }

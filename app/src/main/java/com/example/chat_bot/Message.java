@@ -76,7 +76,7 @@ public class Message {
         this.timestamp = timestamp;
     }
 
-    // Retorna o texto da mensagem (utilizado no RecyclerView)
+
     public String getText() {
         return content;
     }
