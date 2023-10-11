@@ -1,11 +1,11 @@
-package com.example.chat_bot;
-
-import android.content.Context;
+package com.example.chat_bot.daos;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.chat_bot.Message;
 
 import java.util.List;
 

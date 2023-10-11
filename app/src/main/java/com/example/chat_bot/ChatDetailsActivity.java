@@ -1,19 +1,18 @@
 package com.example.chat_bot;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chat_bot.daos.MessageDao;
+import com.example.chat_bot.db.AppDatabase;
+
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 public class ChatDetailsActivity extends AppCompatActivity {
 

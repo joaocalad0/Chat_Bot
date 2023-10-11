@@ -1,4 +1,4 @@
-package com.example.chat_bot;
+package com.example.chat_bot.db;
 
 import android.content.Context;
 
@@ -8,7 +8,17 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import java.util.concurrent.Executor;
+import com.example.chat_bot.Bot;
+import com.example.chat_bot.BotMessage;
+import com.example.chat_bot.BotTipe;
+import com.example.chat_bot.Chat;
+import com.example.chat_bot.Message;
+import com.example.chat_bot.daos.BotDao;
+import com.example.chat_bot.daos.BotMessageDao;
+import com.example.chat_bot.daos.BotTipeDao;
+import com.example.chat_bot.daos.ChatDao;
+import com.example.chat_bot.daos.MessageDao;
+
 import java.util.concurrent.Executors;
 
 @Database(entities = {Chat.class, Message.class, BotMessage.class, Bot.class, BotTipe.class}, version = 1)

@@ -8,8 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
+import com.example.chat_bot.daos.ChatDao;
+import com.example.chat_bot.db.AppDatabase;
 
 public class AddChatActivity extends AppCompatActivity {
 
